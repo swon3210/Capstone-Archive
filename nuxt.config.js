@@ -64,7 +64,6 @@ module.exports = {
       return axios.get('https://api.storyblok.com/v1/cdn/stories?version=published&token=oxec0uQyPdv8TsebHM7rrgtt&cv=' + Math.floor(Date.now() / 1e3))
       .then(res => {
         const projects = res.data.stories.map(x => x.full_slug)
-        console.log(projects);
         return [
           ...projects
         ]
