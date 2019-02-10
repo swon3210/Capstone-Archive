@@ -52,17 +52,10 @@ export default {
     HistoryBlock,
   },
   mounted() {
-    console.log(this.pageData);
     this.$storybridge.on(['input', 'published', 'change'], (event) => {
-      if (event.action == 'input') {
-        if (event.story.id === this.story.id) {
-          this.story.content = event.story.content
-        }
-      } else {
-        window.location.reload()
-      }
-    })
-  },
+      window.location.reload()
+    });
+  }
 }
 </script>
 
