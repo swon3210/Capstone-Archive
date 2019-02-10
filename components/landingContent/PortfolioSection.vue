@@ -7,7 +7,7 @@
       </div>
       <div class="row no-gutters">
         <div class="col-lg-6" v-for="portfolio in portfolioData" :key="portfolio._uid">
-          <nuxt-link to="projectPage" class="portfolio-item">
+          <nuxt-link to="projectpage" class="portfolio-item">
             <div class="caption">
               <div class="caption-content">
                 <h2>{{portfolio.title}}<br></h2>

@@ -8,7 +8,7 @@
             <span>{{purposeData.text}}</span>
           </p>
           <nuxt-link class="btn btn-light text-light btn-xl js-scroll-trigger"
-            role="button" to="introPage" style="background-color: rgb(141,198,63);">소개 페이지
+            role="button" to="intropage" style="background-color: rgb(141,198,63);">소개 페이지
           </nuxt-link>
         </div>
       </div>

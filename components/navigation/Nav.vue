@@ -10,13 +10,13 @@
       <div class="collapse navbar-collapse text-light" id="navcol-1">
         <ul class="nav navbar-nav text-light ml-auto" style="padding-right: 0px;">
           <li class="nav-item" role="presentation" style="margin-right: 10px;">
-            <nuxt-link to="/purposePage" class="nav-link">소개</nuxt-link>
+            <nuxt-link to="/purposepage" class="nav-link">소개</nuxt-link>
           </li>
           <li class="nav-item" role="presentation" style="margin-right: 10px;">
-            <nuxt-link to="/introPage" class="nav-link">About LIS-DS</nuxt-link>
+            <nuxt-link to="/intropage" class="nav-link">About LIS-DS</nuxt-link>
           </li>
           <li class="nav-item" role="presentation" style="margin-right: 10px;">
-            <nuxt-link to="/projectPage" class="nav-link">팀 프로젝트</nuxt-link>
+            <nuxt-link to="/projectpage" class="nav-link">팀 프로젝트</nuxt-link>
           </li>
         </ul>
       </div>
