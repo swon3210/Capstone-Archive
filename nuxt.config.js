@@ -57,8 +57,15 @@ module.exports = {
     ['storyblok-nuxt', {
       accessToken: process.env.NODE_ENV == 'production' ? 'oxec0uQyPdv8TsebHM7rrgtt' : '4OP7mqK3dAYQzuvunj7EtAtt', 
       cacheProvider: "memory" 
-    }]
+    }],
+    '@nuxtjs/vuetify'
   ],
+  vuetify: {
+    // Vuetify options
+    theme: {
+      primary: '#8dc63f'
+    }
+  },
   generate: {
     routes: function () {
       return axios.get('https://api.storyblok.com/v1/cdn/stories?version=published&token=oxec0uQyPdv8TsebHM7rrgtt&cv=' + Math.floor(Date.now() / 1e3))
@@ -75,6 +82,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    vendor: ['vuetify'],
     /*
     ** You can extend webpack config here
     */

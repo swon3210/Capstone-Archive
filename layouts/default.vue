@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-app>
     <Nav
       :navColor = "'rgb(141,198,63)'"
     />
@@ -10,7 +10,7 @@
     <Footer 
       :footerColor = "'rgb(141,198,63)'"
     />
-  </div>
+  </v-app>
 </template>
 
 <script>
