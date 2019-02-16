@@ -15,22 +15,20 @@
 </template>
 
 <script>
-import { db } from '~/fb'
-
 export default {
   data () {
     return {
-      name: '',
       gradient: 'to top right, rgba(63,81,181, .7), rgba(25,32,72, .7)'
     }
   },
+  props: {
+    name: {
+      type: String,
+      default: 'name'
+    }
+  },
   mounted () {
-    console.log(this.$store.state.uid);
-    db.collection('users').doc(this.$store.state.uid).get()
-    .then(doc => {
-      this.name = doc.data().name;
-
-    })
+    
   }
 }
 </script>

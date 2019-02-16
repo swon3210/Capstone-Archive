@@ -4,7 +4,8 @@ const store = () => new Vuex.Store({
   state: {
     snackbar: false,
     loginDisplay: 'Login',
-    uid: ''
+    uid: '',
+    isAdmin: false
   },
   getters: {
     snackbar (state) {
@@ -12,6 +13,9 @@ const store = () => new Vuex.Store({
     },
     loginDisplay (state) {
       return state.loginDisplay;
+    },
+    isAdmin (state) {
+      return state.isAdmin;
     }
   },
   mutations: {
@@ -30,6 +34,9 @@ const store = () => new Vuex.Store({
     init_uid (state, payload) {
       state.uid = payload;
       
+    },
+    is_admin (state, payload) {
+      state.isAdmin = payload;
     }
 
   },

@@ -20,6 +20,9 @@ export default {
     auth.onAuthStateChanged(user => {
       if (user) {
         this.$store.commit('display_logout');
+        user.getIdTokenResult().then(idTokenResult => {
+          this.$store.commit('is_admin', idTokenResult.claims.admin);
+        });
       } else {
         this.$store.commit('display_login');
       }

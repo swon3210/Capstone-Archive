@@ -7,7 +7,7 @@
       <v-btn flat color="white"><nuxt-link tag="a" class="nav-link text-white" to="/purposepage">소개</nuxt-link></v-btn>
       <v-btn flat color="white"><nuxt-link tag="a" class="nav-link text-white" to="/intropage">About LIS-DS</nuxt-link></v-btn>
       <v-btn flat color="white"><nuxt-link tag="a" class="nav-link text-white" to="/projectpage">팀 프로젝트</nuxt-link></v-btn>
-      <v-btn flat color="white" @click="loginOrlogout">{{loginDisplay}}</v-btn>
+      <v-btn flat color="white" @click="login_or_logout">{{loginDisplay}}</v-btn>
     </v-toolbar-items>
   </v-toolbar>
 </template>
@@ -27,7 +27,7 @@ export default {
     ...mapGetters(['loginDisplay'])
   },
   methods: {
-    loginOrlogout () {
+    login_or_logout () {
       if (this.$store.state.loginDisplay === 'Login') {
         this.$router.push('/communitypage/login');
       } else {

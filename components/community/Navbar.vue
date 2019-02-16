@@ -30,7 +30,7 @@
         </v-list>
       </v-menu>
 
-      <v-btn flat color="grey" @click="loginOrlogout">
+      <v-btn flat color="grey" @click="login_or_logout">
         <span>{{$store.getters.loginDisplay}}</span>
         <v-icon right>exit_to_app</v-icon>
       </v-btn>
@@ -59,6 +59,16 @@
           </v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
+      <v-list-tile v-if="isAdmin">
+        <v-list-tile-action>
+          <v-icon class="white--text">person</v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          <v-list-tile-title class="white--text">
+            Admin
+          </v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
     </v-navigation-drawer>
 
   </nav>
@@ -77,18 +87,18 @@ export default {
         { icon: 'dashboard', text: 'Dashboard', route: '/communitypage'},
         { icon: 'folder', text: 'My Projects', route: '/communitypage/projects'},
         { icon: 'person', text: 'Team', route: '/communitypage/team'},
-        { icon: 'person', text: 'Profile', route: '/communitypage/profile'},
+        { icon: 'person', text: 'Profile', route: '/communitypage/profile'}
       ]
     }
   },
   computed: {
-    ...mapGetters(['snackbar'])
+    ...mapGetters(['snackbar', 'isAdmin'])
   },
   components: {
     Popup
   },
   methods: {
-    loginOrlogout () {
+    login_or_logout () {
       if (this.$store.state.loginDisplay === 'Login') {
         this.$router.push('/communitypage/login');
       } else {
