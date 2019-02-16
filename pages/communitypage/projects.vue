@@ -39,7 +39,7 @@ export default {
           this.projects.push({...change.doc.data(), id: change.doc.id});
         } 
       })
-    })
+    }, err => console.log(err.message));
   },
   computed: {
     myProjects () {

@@ -19,7 +19,8 @@
           <div class="col-sm-4 label-column"><label class="col-form-label" for="repeat-pawssword-input-field">Repeat Password </label></div>
           <div class="col-sm-6 input-column"><input id="register-repeat-password" class="form-control" type="password" v-model="userRepeatPassword"></div>
         </div>
-        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1"><label class="form-check-label" for="formCheck-1">모든 약관에 동의합니다</label></div><button class="btn btn-light submit-button" type="submit">가입하기</button></form>
+        <div class="form-check"><label class="form-check-label" for="formCheck-1">{{error}}</label></div><button class="btn btn-light submit-button" type="submit">가입하기</button></form>
+        <p class="danger"></p>
     </div>
   </div>
 </template>
@@ -34,7 +35,8 @@ export default {
       userName: '',
       userEmail: '',
       userPassword: '',
-      userRepeatPassword: ''
+      userRepeatPassword: '',
+      error: ''
     }
   },
   methods: {
@@ -51,6 +53,9 @@ export default {
         this.userPassword = '';
         this.userRepeatPassword = '';
         this.$router.push('/communitypage/login');
+      }).catch(err => {
+        this.error = err.message;
+        console.log(err.message);
       });
     }
   }

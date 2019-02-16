@@ -67,6 +67,11 @@ export default {
           this.loading = false;
           this.dialog = false;
           this.$store.commit('create_snackbar');
+        }).catch(err => {
+          alert('권한이 없습니다!');
+          this.loading = false;
+          this.dialog = false;
+          console.log(err.message);
         });
       }
     },

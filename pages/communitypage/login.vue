@@ -8,6 +8,7 @@
             <div class="form-group"><label class="text-secondary">Email</label><input id="login-email" v-model="userEmail" class="form-control" type="text" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$" inputmode="email"></div>
             <div class="form-group"><label class="text-secondary">Password</label><input id="login-password" class="form-control" type="password" v-model="userPassword"  required=""></div><button class="btn btn-info mt-2" type="submit">Log In</button></form>
           <p class="mt-3 mb-0"><nuxt-link tag="a" to="/communitypage/register" class="text-info small">회원가입</nuxt-link></p>
+          <p class="text-danger small">{{error}}</p>
         </div>
       </div>
       <div class="col-lg-6 d-flex align-items-end" id="bg-block" style="background-image:url(/login.jpg);background-size:cover;background-position:center center;">
@@ -25,7 +26,8 @@ export default {
   data () {
     return {
       userEmail: '',
-      userPassword: ''
+      userPassword: '',
+      error: ''
     }
   },
   methods: {
@@ -35,6 +37,9 @@ export default {
         this.$store.commit('init_uid', cred.user.uid);
         console.log('uid', this.$store.state.uid);
         this.$router.push('/communitypage')
+      }).catch(err => {
+        this.error = err.message;
+        console.log(err.message);
       });
     }
   }
