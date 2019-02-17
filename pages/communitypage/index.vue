@@ -1,31 +1,10 @@
 <template>
-  <div class="dashboard">
-    <h1 class="subheading grey--text">Dashboard</h1>
-    <v-container>
-      <v-card flat v-for="project in projects" :key="project.id">
-        <v-layout row wrap :class="`pa-3 project ${project.status}`">
-          <v-flex xs12 md6>
-            <div class="caption grey--text">Project Title</div>
-            <div>{{project.title}}</div>
-          </v-flex>
-          <v-flex xs6 sm4 md2>
-            <div class="caption grey--text">Author</div>
-            <div>{{project.author}}</div>
-          </v-flex>
-          <v-flex xs6 sm4 md2>
-            <div class="caption grey--text">Due by</div>
-            <div>{{project.due}}</div>
-          </v-flex>
-          <v-flex xs6 sm4 md2>
-            <div class="right">
-              <v-chip small :class="`${project.status} white--text caption my-2`">{{project.status}}</v-chip>
-            </div>
-          </v-flex>
-        </v-layout>
-        <v-divider />
-      </v-card>
-      
-    </v-container>
+  <div id="content">
+    <div class="one">1</div>
+    <div class="two">2</div>
+    <div class="three">3</div>
+    <div class="four">4</div>
+    <div class="five">5</div>
 
   </div>
 </template>
@@ -34,30 +13,7 @@
 import { db } from '~/fb'
 
 export default {
-  layout: 'community',
-  data () {
-    return {
-      projects: []
-    }
-  },
-  created() {
-    db.collection('projects').onSnapshot(res => {
-      const changes = res.docChanges();
-      changes.forEach(change => {
-        if (change.type === 'added') {
-          this.projects.push({...change.doc.data(), id: change.doc.id});
-        } 
-      })
-    }, err => console.log(err.message));
-  },
-  methods: {
-    // state 'projects' change
-    sortBy (val) {
-      this.projects.sort((a,b) => {
-        return a[val] < b[val] ? -1 : 1
-      });
-    }
-  }
+  layout: 'empty'
 }
 
 // 여기 게시글 넣는 게시판으로 활용하면 좋겠다.
@@ -65,31 +21,51 @@ export default {
 </script>
 
 <style scoped>
-
-.project.complete {
-  border-left: 4px solid #3cd1c2
+body {
+  text-align: center;
+  color: white;
 }
 
-.project.ongoing {
-  border-left: 4px solid orange
+#content {
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: minmax(150px, auto);
+  grid-gap: 10px;
+  display: grid;
+  max-width: 960px;
+  margin: 0 auto;
+
 }
 
-.project.overdue {
-  border-left: 4px solid tomato
+#content div {
+  background: #333;
+  padding: 30px;
+  transform: rotateZ(45deg) scale(0.7);
 }
 
-.v-chip.complete {
-  background: #3cd1c2
+.one {
+  grid-column: 1 / 3;
+  grid-row: 1 / 5;
 }
 
-.v-chip.ongoing {
-  background: orange
+.two {
+  grid-column: 3 / 7;
+  grid-row: 1 / 3;
 }
 
-.v-chip.overdue {
-  background: tomato
+.three {
+  grid-column: 3 / 5;
+  grid-row: 3 / 5;
 }
 
+.four {
+  grid-column: 5 / 7;
+  grid-row: 3 / 7;
+}
+
+.five {
+  grid-column: 1 / 5;
+  grid-row: 5 / 7;
+}
 
 </style>
 

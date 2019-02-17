@@ -29,19 +29,19 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/assets/css/bootstrap.min.css',
-    '~/assets/css/Article-Clean.css',
-    '~/assets/css/Login-form-Page-BS4.css',
-    '~/assets/css/Navigation-Clean.css',
-    '~/assets/css/Side-By-Side-Section.css',
-    '~/assets/css/Pretty-Registration-Form.css',
-    '~/assets/css/Projects-Horizontal.css',
-    '~/assets/css/Responsive-Youtube-Embed.css',
-    '~/assets/css/Team-Boxed.css',
-    '~/assets/css/Footer-Clean.css',
-    '~/assets/css/fonts/font-awesome.min.css',
-    '~/assets/css/fonts/ionicons.min.css',
-    '~/assets/css/fonts/simple-line-icons.min.css',
+    // '~/assets/css/bootstrap.min.css',
+    // '~/assets/css/Article-Clean.css',
+    // '~/assets/css/Login-form-Page-BS4.css',
+    // '~/assets/css/Navigation-Clean.css',
+    // '~/assets/css/Side-By-Side-Section.css',
+    // '~/assets/css/Pretty-Registration-Form.css',
+    // '~/assets/css/Projects-Horizontal.css',
+    // '~/assets/css/Responsive-Youtube-Embed.css',
+    // '~/assets/css/Team-Boxed.css',
+    // '~/assets/css/Footer-Clean.css',
+    // '~/assets/css/fonts/font-awesome.min.css',
+    // '~/assets/css/fonts/ionicons.min.css',
+    // '~/assets/css/fonts/simple-line-icons.min.css',
   ],
 
   /*

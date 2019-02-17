@@ -4,9 +4,9 @@
     <v-toolbar-title><span class="font-weight-light">SKKU</span><span>CAPSTONE</span></v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn flat color="white"><nuxt-link tag="a" class="nav-link text-white" to="/purposepage">소개</nuxt-link></v-btn>
-      <v-btn flat color="white"><nuxt-link tag="a" class="nav-link text-white" to="/intropage">About LIS-DS</nuxt-link></v-btn>
-      <v-btn flat color="white"><nuxt-link tag="a" class="nav-link text-white" to="/projectpage">팀 프로젝트</nuxt-link></v-btn>
+      <v-btn flat color="white"><nuxt-link tag="a" class="white--text" to="/purposepage">소개</nuxt-link></v-btn>
+      <v-btn flat color="white"><nuxt-link tag="a" class="white--text" to="/intropage">About LIS-DS</nuxt-link></v-btn>
+      <v-btn flat color="white"><nuxt-link tag="a" class="white--text" to="/projectpage">팀 프로젝트</nuxt-link></v-btn>
       <v-btn flat color="white" @click="login_or_logout">{{loginDisplay}}</v-btn>
     </v-toolbar-items>
   </v-toolbar>
@@ -40,4 +40,5 @@ export default {
 
 
 <style scoped>
+
 </style>

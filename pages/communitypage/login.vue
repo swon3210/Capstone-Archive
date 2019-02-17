@@ -36,7 +36,7 @@ export default {
       .then(cred => {
         this.$store.commit('init_uid', cred.user.uid);
         console.log('uid', this.$store.state.uid);
-        this.$router.push('/communitypage')
+        this.$router.push('/communitypage/dashboard')
       }).catch(err => {
         this.error = err.message;
         console.log(err.message);
@@ -47,5 +47,6 @@ export default {
 </script>
 
 <style scoped>
-
+@import url('~/assets/css/bootstrap.min.css');
+@import url('~/assets/css/Login-form-Page-BS4.css');
 </style>

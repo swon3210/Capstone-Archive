@@ -1,74 +1,107 @@
 <template>
   <nav>
-
     <v-snackbar v-model="snackbar" top color="success">
       <span>You added a new project</span>
       <v-btn flat color="white" @click="remove_snackbar">Close</v-btn>
     </v-snackbar>
-
-    <v-toolbar flat app>
-      <v-toolbar-side-icon class="grey--text" 
-        @click="drawer = !drawer"
+    <v-navigation-drawer
+      fixed
+      v-model="drawerRight"
+      left
+      clipped
+      app
+      width="230"
+    >
+      <v-container>
+        <v-layout column justify-center>
+          <v-flex>
+            <v-btn round large depressed block @click.stop="left = !left" color="primary">CLICK</v-btn>
+          </v-flex>
+        </v-layout>
+      </v-container>
+      <v-divider />
+      <v-list-tile v-for="link in links" :key="link.text" router :to="link.route">
+        <v-list-tile-action>
+          <v-icon>{{link.icon}}</v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          <v-list-tile-title>
+            {{link.text}}
+          </v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+      <v-list-tile v-if="isAdmin" to="/communitypage/admin">
+        <v-list-tile-action>
+          <v-icon>account_box</v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          <v-list-tile-title>
+            Admin
+          </v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+    </v-navigation-drawer>
+    <v-toolbar
+      class="myToolbar"
+      fixed
+      flat
+      app
+      clipped-left
+    >
+      <v-toolbar-title class="mx-3"><span class="font-weight-light primary--text">SKKU</span><span class="grey--text text--darken-1">CAPSTONE</span></v-toolbar-title>
+      <v-divider 
+        vertical
+        class="ml-3"
       />
-      <v-toolbar-title class="text-uppercase grey--text">
-        <span class="font-weight-light">Todo</span>
-        <span>Song</span>
-      </v-toolbar-title>
-      <v-spacer />
-
-      <v-menu offset-y>
-        <v-btn flat slot="activator" color="grey" dark>
-          <v-icon left>expand_more</v-icon>
-          <span>Menu</span>
+        <v-icon class="grey--text text--darken-1 mx-3" @click.stop="drawerRight = !drawerRight">apps</v-icon>
+        <v-btn class="grey--text text--darken-1" flat v-for="link in links" :key='link.text' router :to="link.route">
+          
+            {{link.text}}
+          
         </v-btn>
-        <v-list>
-          <v-list-tile v-for="link in links" :key='link.text' router :to="link.route">
-            <v-list-tile-title>
-              {{link.text}}
-            </v-list-tile-title>
-          </v-list-tile>
-        </v-list>
-      </v-menu>
-
-      <v-btn flat color="grey" @click="login_or_logout">
+      
+      <v-spacer></v-spacer>
+      <v-btn flat @click="login_or_logout" class="grey--text">
         <span>{{$store.getters.loginDisplay}}</span>
-        <v-icon right>exit_to_app</v-icon>
       </v-btn>
+      
+      <v-icon @click.stop="drawer = !drawer">chat</v-icon>
     </v-toolbar>
-
-    <v-navigation-drawer v-model="drawer" app class="primary" width="220">
+    <v-navigation-drawer
+      fixed
+      right
+      v-model="drawer"
+      app
+      width="230"
+    >
+      <v-list dense>
+        <v-list-tile @click.stop="right = !right">
+          <v-list-tile-action>
+            <v-icon>exit_to_app</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Open Temporary Drawer</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+    <v-navigation-drawer
+      temporary
+      v-model="left"
+      fixed
+      width="220"
+    >
       <v-layout column align-center>
         <v-flex class="mt-5">
           <v-avatar size="100">
             <img src="/avatar.jpg">
           </v-avatar>
-          <p class="white--text text-xs-center subheading mt-1">Song Won</p>
+          <p class="text-xs-center subheading mt-1">Song Won</p>
         </v-flex>
         <v-flex class="mt-1 mb-3">
           <Popup />
         </v-flex>
       </v-layout>
-
-      <v-list-tile v-for="link in links" :key="link.text" router :to="link.route">
-        <v-list-tile-action>
-          <v-icon class="white--text">{{link.icon}}</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title class="white--text">
-            {{link.text}}
-          </v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-      <v-list-tile v-if="isAdmin">
-        <v-list-tile-action>
-          <v-icon class="white--text">person</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title class="white--text">
-            Admin
-          </v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
     </v-navigation-drawer>
 
   </nav>
@@ -83,10 +116,13 @@ export default {
   data () {
     return {
       drawer: false,
+      drawerRight: true,
+      right: null,
+      left: null,
       links: [
-        { icon: 'dashboard', text: 'Dashboard', route: '/communitypage'},
+        { icon: 'dashboard', text: 'Dashboard', route: '/communitypage/dashboard'},
         { icon: 'folder', text: 'My Projects', route: '/communitypage/projects'},
-        { icon: 'person', text: 'Team', route: '/communitypage/team'},
+        { icon: 'supervisor_account', text: 'Team', route: '/communitypage/team'},
         { icon: 'person', text: 'Profile', route: '/communitypage/profile'}
       ]
     }
@@ -114,5 +150,8 @@ export default {
 </script>
 
 <style scoped>
-
+.myToolbar {
+  background: white;
+  border-bottom: 0.5px solid lightgrey;
+}
 </style>
