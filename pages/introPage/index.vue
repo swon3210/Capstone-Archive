@@ -50,5 +50,5 @@ export default {
 </script>
 
 <style scoped>
-
+@import url('~/assets/css/Article-Clean.css');  
 </style>

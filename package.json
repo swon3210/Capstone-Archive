@@ -20,9 +20,13 @@
     "nuxt": "^2.3.4",
     "save": "^2.3.3",
     "storyblok-nuxt": "^1.0.1",
+    "tiptap": "^1.13.0",
+    "tiptap-extensions": "^1.13.0",
     "vue-markdown": "^2.2.4"
   },
   "devDependencies": {
-    "nodemon": "^1.18.9"
+    "node-sass": "^4.11.0",
+    "nodemon": "^1.18.9",
+    "sass-loader": "^7.1.0"
   }
 }

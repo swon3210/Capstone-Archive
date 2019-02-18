@@ -67,5 +67,5 @@ export default {
 </script>
 
 <style scoped>
-
+@import url('~/assets/css/Side-By-Side-Section.css');
 </style>

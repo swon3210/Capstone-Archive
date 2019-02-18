@@ -1,0 +1,46 @@
+#content {
+  display: grid;
+  height: 100%;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-gap: 10px;
+  margin: 0 auto;
+  grid-template-areas: 
+  "aside aside main main main main"
+  "aside aside main main main main"
+  "aside aside main main main main"
+  "aside aside main main main main"
+  "aside aside main main main main"
+}
+
+@media screen and (min-width: 760px) {
+  #content {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-gap: 10px;
+    margin: 0 auto;
+    grid-template-areas: 
+    "aside aside main main main main"
+    "aside aside main main main main"
+    "aside aside main main main main"
+    "aside aside main main main main"
+    "aside aside main main main main"
+  }
+}
+
+#content > * {
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+main {
+  grid-area: main;
+}
+
+aside {
+  grid-area: aside;
+}
+
+
+

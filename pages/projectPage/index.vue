@@ -57,6 +57,6 @@ export default {
 </script>
 
 <style scoped>
-
+@import url('~/assets/css/Projects-Horizontal.css');
 </style>
 

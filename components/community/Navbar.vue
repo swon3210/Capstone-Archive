@@ -6,7 +6,7 @@
     </v-snackbar>
     <v-navigation-drawer
       fixed
-      v-model="drawerRight"
+      v-model="drawerLeft"
       left
       clipped
       app
@@ -15,7 +15,7 @@
       <v-container>
         <v-layout column justify-center>
           <v-flex>
-            <v-btn round large depressed block @click.stop="left = !left" color="primary">CLICK</v-btn>
+            <v-btn round large depressed block @click.stop="left = !left" color="primary">설정</v-btn>
           </v-flex>
         </v-layout>
       </v-container>
@@ -47,30 +47,36 @@
       flat
       app
       clipped-left
+      prominent
+
     >
       <v-toolbar-title class="mx-3"><span class="font-weight-light primary--text">SKKU</span><span class="grey--text text--darken-1">CAPSTONE</span></v-toolbar-title>
-      <v-divider 
-        vertical
-        class="ml-3"
-      />
-        <v-icon class="grey--text text--darken-1 mx-3" @click.stop="drawerRight = !drawerRight">apps</v-icon>
-        <v-btn class="grey--text text--darken-1" flat v-for="link in links" :key='link.text' router :to="link.route">
-          
-            {{link.text}}
-          
+
+      <v-icon class="grey--text text--darken-1 mx-3" @click.stop="drawerLeft = !drawerLeft">apps</v-icon>
+      <v-toolbar-items class="hidden-sm-and-down mx-2">
+        <v-btn color="primary"
+          class="mx-2"
+          flat 
+          v-for="link in links" 
+          :key='link.text' 
+          router 
+          :to="link.route"
+        >
+          {{link.text}}
         </v-btn>
+      </v-toolbar-items>
       
       <v-spacer></v-spacer>
       <v-btn flat @click="login_or_logout" class="grey--text">
         <span>{{$store.getters.loginDisplay}}</span>
       </v-btn>
       
-      <v-icon @click.stop="drawer = !drawer">chat</v-icon>
+      <v-icon @click.stop="drawerRight = !drawerRight">chat</v-icon>
     </v-toolbar>
     <v-navigation-drawer
       fixed
       right
-      v-model="drawer"
+      v-model="drawerRight"
       app
       width="230"
     >
@@ -89,7 +95,7 @@
       temporary
       v-model="left"
       fixed
-      width="220"
+      width="240"
     >
       <v-layout column align-center>
         <v-flex class="mt-5">
@@ -115,8 +121,8 @@ import { auth } from '~/fb'
 export default {
   data () {
     return {
-      drawer: false,
-      drawerRight: true,
+      drawerRight: false,
+      drawerLeft: false,
       right: null,
       left: null,
       links: [
@@ -152,6 +158,5 @@ export default {
 <style scoped>
 .myToolbar {
   background: white;
-  border-bottom: 0.5px solid lightgrey;
 }
 </style>
