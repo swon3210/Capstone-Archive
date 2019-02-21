@@ -1,130 +1,148 @@
 <template>
-  <div class="editor">
-    <editor-menu-bar :editor="editor">
+  <div class="editor" style="width:100%">
+    <editor-menu-bar :editor="editor" class="pa-1">
       <div
-        class="menubar is-hidden"
-        :class="{ 'is-focused': focused }"
-        slot-scope="{ commands, isActive, focused }"
+        slot-scope="{ commands }"
       >
-        <v-btn-toggle v-model="toggle_multiple">
-          <v-btn 
-            flat
-            class="menubar__button"
-            :class="{ 'is-active': isActive.bold() }"
-            @click="commands.bold"
+        
+        <v-btn-toggle 
+          v-model="toggle_multiple"
+          
+        >
+          <v-layout 
+            row 
+            wrap
           >
-            <v-icon>format_bold</v-icon>
-          </v-btn>
-          <v-btn 
-            flat
-            class="menubar__button"
-            :class="{ 'is-active': isActive.italic() }"
-            @click="commands.italic"
-          >
-            <v-icon>format_italic</v-icon>
-          </v-btn>
-          <v-btn 
-            flat
-            class="menubar__button"
-            :class="{ 'is-active': isActive.strike() }"
-            @click="commands.strike"
-          >
-            <v-icon>format_clear</v-icon>
-          </v-btn>
-          <v-btn 
-            flat
-            class="menubar__button"
-            :class="{ 'is-active': isActive.underline() }"
-            @click="commands.underline"
-          >
-            <v-icon>format_underlined</v-icon>
-          </v-btn>
-          <v-btn 
-            flat
-            class="menubar__button"
-            :class="{ 'is-active': isActive.code() }"
-            @click="commands.code"
-          >
-            <v-icon>code</v-icon>
-          </v-btn>
-          <v-btn 
-            flat
-            class="menubar__button"
-            :class="{ 'is-active': isActive.paragraph() }"
-            @click="commands.paragraph"
-          >
-            <v-icon>short_text</v-icon>
-          </v-btn>
-          <v-btn 
-            flat
-            class="menubar__button"
-            :class="{ 'is-active': isActive.heading({ level: 1 }) }"
-            @click="commands.heading({ level: 1 })"
-          >
-            H1
-          </v-btn>
-          <v-btn
-            flat
-            class="menubar__button"
-            :class="{ 'is-active': isActive.heading({ level: 2 }) }"
-            @click="commands.heading({ level: 2 })"
-          >
-            H2
-          </v-btn>
-            <v-btn
-            flat
-            class="menubar__button"
-            :class="{ 'is-active': isActive.heading({ level: 3 }) }"
-            @click="commands.heading({ level: 3 })"
-          >
-            H3
-          </v-btn>
-          <v-btn
-            flat
-            class="menubar__button"
-            :class="{ 'is-active': isActive.bullet_list() }"
-            @click="commands.bullet_list"
-          >
-            <v-icon>format_list_bulleted</v-icon>
-          </v-btn>
-          <v-btn
-            flat
-            class="menubar__button"
-            :class="{ 'is-active': isActive.bullet_list() }"
-            @click="commands.bullet_list"
-          >
-            <v-icon>format_list_bulleted</v-icon>
-          </v-btn>
+            <v-flex class="ml-3">
+              <v-btn 
+                flat
+                class="menubar__button"
+                @click="commands.bold"
+              >
+                <v-icon>format_bold</v-icon>
+              </v-btn>
+            </v-flex>
+            <v-flex>
+              <v-btn 
+                flat
+                class="menubar__button"
+                @click="commands.italic"
+              >
+                <v-icon>format_italic</v-icon>
+              </v-btn>
+            </v-flex>
+            <v-flex>
+              <v-btn 
+                flat
+                class="menubar__button"
+                @click="commands.strike"
+              >
+                <v-icon>format_clear</v-icon>
+              </v-btn>
+            </v-flex>
+            <v-flex>
+              <v-btn 
+                flat
+                class="menubar__button"
+                @click="commands.underline"
+              >
+                <v-icon>format_underlined</v-icon>
+              </v-btn>
+            </v-flex>
+            <v-flex>
+              <v-btn 
+                flat
+                class="menubar__button"
+                @click="commands.code"
+              >
+                <v-icon>code</v-icon>
+              </v-btn>
+            </v-flex>
+            <v-flex>
+              <v-btn 
+                flat
+                class="menubar__button"
+                @click="commands.paragraph"
+              >
+                <v-icon>short_text</v-icon>
+              </v-btn>
+            </v-flex>
+            <v-flex>
+              <v-btn 
+                flat
+                class="menubar__button"
+                @click="commands.heading({ level: 1 })"
+              >
+                H1
+              </v-btn>
+            </v-flex>
+            <v-flex>
+              <v-btn
+                flat
+                class="menubar__button"
+                @click="commands.heading({ level: 2 })"
+              >
+                H2
+              </v-btn>
+            </v-flex>
+            <v-flex>
+              <v-btn
+                flat
+                class="menubar__button"
+                @click="commands.heading({ level: 3 })"
+              >
+                H3
+              </v-btn>
+            </v-flex>
+            <v-flex>
+              <v-btn
+                flat
+                class="menubar__button"
+                @click="commands.bullet_list"
+              >
+                <v-icon>format_list_bulleted</v-icon>
+              </v-btn>
+            </v-flex>
+            <v-flex>
+              <v-btn
+                flat
+                class="menubar__button"
+                @click="commands.ordered_list"
+              >
+                <v-icon>format_list_numbered</v-icon>
+              </v-btn>
+            </v-flex>
+            <v-flex>
+              <v-btn
+                flat
+                class="menubar__button"
+                @click="commands.redo"
+              >
+                <v-icon>redo</v-icon>
+              </v-btn>
+            </v-flex>
+            <v-flex class="mr-3">
+              <v-btn
+                flat
+                class="menubar__button"
+                @click="commands.undo"
+              >
+                <v-icon>undo</v-icon>
+              </v-btn>
+            </v-flex>
+
+          </v-layout>
           
         </v-btn-toggle>
-        <!-- <v-btn
-          class="menubar__button"
-          :class="{ 'is-active': isActive.ordered_list() }"
-          @click="commands.ordered_list"
-        >
-          <v-icon name="ol" />
-        </v-btn>
-
-        <v-btn
-          class="menubar__button"
-          :class="{ 'is-active': isActive.blockquote() }"
-          @click="commands.blockquote"
-        >
-          <v-icon name="quote" />
-        </v-btn>
-
-        <v-btn
-          class="menubar__button"
-          :class="{ 'is-active': isActive.code_block() }"
-          @click="commands.code_block"
-        >
-          <v-icon name="code" />
-        </v-btn> -->
+      
 
       </div>
     </editor-menu-bar>
 
-    <editor-content class="editor__content my-2" :editor="editor" />
+    <editor-content 
+      class="editorScroll my-2 pa-1"
+      :editor="editor"
+    />
   </div>
 </template>
 
@@ -177,12 +195,8 @@ export default {
           new History(),
         ],
         content: `
-          <h2>
-            Hiding Menu Bar
-          </h2>
-          <p>
-            Click into this text to see the menu. Click outside and the menu will disappear. It's like magic.
-          </p>
+          <br />
+          
         `,
         // dummy data
         
@@ -192,6 +206,18 @@ export default {
   },
   beforeDestroy() {
     this.editor.destroy()
+  },
+  methods: {
+    test () {
+      console.log(this.editor);
+    }
   }
 }
 </script>
+
+<style scoped>
+.editorScroll {
+  overflow-y: scroll;
+  height: 314px;
+}
+</style>
