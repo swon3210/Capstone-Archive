@@ -140,7 +140,7 @@
     </editor-menu-bar>
 
     <editor-content 
-      class="editorScroll my-2 pa-1"
+      class="editorScroll my-2 pa-2"
       :editor="editor"
     />
   </div>
@@ -196,7 +196,13 @@ export default {
         ],
         content: `
           <br />
-          
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
         `,
         // dummy data
         
@@ -217,7 +223,7 @@ export default {
 
 <style scoped>
 .editorScroll {
-  overflow-y: scroll;
-  height: 314px;
+  overflow-y: hidden;
+  height: 354px;
 }
 </style>

@@ -29,7 +29,6 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/assets/css/bootstrap.min.css',
     '~/assets/css/fonts/font-awesome.min.css',
     '~/assets/css/fonts/ionicons.min.css',
     '~/assets/css/fonts/simple-line-icons.min.css',

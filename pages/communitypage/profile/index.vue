@@ -23,7 +23,7 @@ export default {
   components: {
     ProfileHeader
   },
-  mounted() {
+  created() {
     db.collection('users').doc(this.$store.state.uid).get()
     .then(doc => {
       this.userName = doc.data().name;

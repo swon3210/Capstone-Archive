@@ -48,7 +48,6 @@
       app
       clipped-left
       prominent
-
     >
       <v-toolbar-title class="mx-3"><span class="font-weight-light primary--text">SKKU</span><span class="grey--text text--darken-1">CAPSTONE</span></v-toolbar-title>
 
@@ -104,9 +103,6 @@
           </v-avatar>
           <p class="text-xs-center subheading mt-1">Song Won</p>
         </v-flex>
-        <v-flex class="mt-1 mb-3">
-          <Popup />
-        </v-flex>
       </v-layout>
     </v-navigation-drawer>
 
@@ -114,7 +110,6 @@
 </template>
 
 <script>
-import Popup from './Popup'
 import { mapGetters, mapMutations } from 'vuex';
 import { auth } from '~/fb'
 
@@ -127,9 +122,10 @@ export default {
       left: null,
       links: [
         { icon: 'dashboard', text: 'Dashboard', route: '/communitypage/dashboard'},
-        { icon: 'folder', text: 'My Projects', route: '/communitypage/projects'},
+        { icon: 'folder', text: 'Project', route: '/communitypage/project'},
         { icon: 'supervisor_account', text: 'Team', route: '/communitypage/team'},
-        { icon: 'person', text: 'Profile', route: '/communitypage/profile'}
+        { icon: 'person', text: 'Profile', route: '/communitypage/profile'},
+        { icon: 'forum', text: 'Forum', route: '/communitypage/forum'}
       ]
     }
   },
@@ -137,7 +133,7 @@ export default {
     ...mapGetters(['snackbar', 'isAdmin'])
   },
   components: {
-    Popup
+    
   },
   methods: {
     login_or_logout () {
@@ -158,5 +154,6 @@ export default {
 <style scoped>
 .myToolbar {
   background: white;
+  border-bottom: 0.3px solid lightgrey
 }
 </style>

@@ -57,6 +57,7 @@ export default {
 </script>
 
 <style scoped>
+@import url('~/assets/css/bootstrap.min.css');
 @import url('~/assets/css/Projects-Horizontal.css');
 </style>
 

@@ -26,4 +26,6 @@ export default {
 </script>
 
 <style scoped>
+@import url('~/assets/css/bootstrap.min.css');
+
 </style>

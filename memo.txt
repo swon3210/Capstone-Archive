@@ -24,20 +24,74 @@ uid(primary)
 name
 email
 role
-team
-messageRooms <- messageRooms
-messages <- messages
-projects <- projects
-plans <- plans
-posts <- posts
+team <- team Collection
+messageRooms <- messageRooms Collection
+messages <- messages Collection
+projects <- projects Collection
+plans <- plans Collection
+posts <- posts Collection
+
+
+
+<teams Collection>
+teamId(primary)
+members <- users Collection
+teamName
+teamDesc
+
 
 <projects Collection>
 
 projectName
-members <- users
+teamName <- teams Collection
+messageRoom <- messageRoom Collection
+plans <- plans Collection
 
 <posts Collection>
 
 
+
+<forum Collection>
+
+authorName, authorRole, authorTeam <-users
+title
+text
+comments <- 빈 배열, 읽는 이가 넣도록 설계
+category <- 빈 배열, 작성자가 넣도록 설계
+reviewNumber < - 이건 안 넣어도 될 것 같다 사실. 그것보다는 읽음 여부를 구현해야 할 듯 한데
+date
+
+
+<forum Page>
+클릭하면 해당 페이지로 들어갈 수 있게 끔.
+추가 버튼을 누르면 위지윅 없는 form 페이지로 넘어가서 글을 쓸 수 있도록
+이때 nuxt의 generate를 고려해야 하므로 form 페이지는 그냥 컴포넌트를 껐다 키는 것으로 구현 
+써진 글이 페이지를 생성할 수 있도록
+
+
+
+일단 전체적인 데이터 스키마를 짜고 앱을 만들어야겠다. 나중에 되돌아 가는 등
+비효율이 심할 듯
+
+
+팀이 없다면 none 팀으로
+
+
+
+
+
+
+
+
+
+
+[[ Nuxt ]]
+
+< 미들웨어 >
+
+미들웨어는 라우트가 로드 되기 전에 실행되는 함수를 의미합니다.
+이 함수에서는 context 를 매개변수로 받을 수 있습니다.
+
+미들웨어는 서버사이드에서도, 클라이언트 사이드에서도 동작합니다.
 
 

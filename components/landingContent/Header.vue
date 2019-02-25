@@ -22,5 +22,5 @@ export default {
 </script>
 
 <style>
-  
+@import url('~/assets/css/bootstrap.min.css');
 </style>
