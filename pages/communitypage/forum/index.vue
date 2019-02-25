@@ -97,6 +97,7 @@ import ForumForm from '~/components/community/ForumForm';
 
 export default {
   layout: 'community',
+  middleware: 'auth',
   data () {
     return {
       layout: 'community',

@@ -9,8 +9,9 @@
 </template>
 
 <script>
-import { db, functions } from '~/fb'
+import { db, functions } from '~/fb';
 import ProfileHeader from '~/components/community/ProfileHeader';
+import { mapGetters } from 'vuex';
 
 export default {
   layout: 'community',
@@ -20,15 +21,20 @@ export default {
       userEmail: ''
     }
   },
+  computed: {
+    ...mapGetters(['uid'])
+  },
   components: {
     ProfileHeader
   },
-  created() {
-    db.collection('users').doc(this.$store.state.uid).get()
-    .then(doc => {
-      this.userName = doc.data().name;
-      this.userEmail = doc.data().email;
-    });
+  beforeMount() {
+    if (this.uid) {
+      db.collection('users').doc(this.uid).get()
+      .then(doc => {
+        this.userName = doc.data().name;
+        this.userEmail = doc.data().email;
+      });
+    } 
   },
   methods: {
     request_admin_claim () {

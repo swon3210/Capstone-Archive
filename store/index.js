@@ -4,6 +4,7 @@ const store = () => new Vuex.Store({
   state: {
     snackbar: false,
     loginDisplay: 'Login',
+    idTokenResult: '',
     uid: '',
     isAdmin: false
   },
@@ -14,8 +15,30 @@ const store = () => new Vuex.Store({
     loginDisplay (state) {
       return state.loginDisplay;
     },
+    idTokenResult (state) {
+      if (state.idTokenResult === undefined) {
+        state.idTokenResult = '';
+      }
+      if (state.idTokenResult === '') {
+        state.idTokenResult = JSON.parse(localStorage.getItem('idTokenResult'));
+      } 
+      return state.idTokenResult
+    },
+    uid (state) {
+      if (state.uid === undefined) {
+        state.uid = '';
+      }
+      if (state.uid === '') {
+        state.uid = localStorage.getItem('uid');
+      }
+      return state.uid;
+    },
     isAdmin (state) {
-      return state.isAdmin;
+      if (state.idTokenResult) {
+        return state.idTokenResult.claims.admin;
+      } else {
+        return false
+      }
     }
   },
   mutations: {
@@ -33,12 +56,10 @@ const store = () => new Vuex.Store({
     },
     init_uid (state, payload) {
       state.uid = payload;
-      
     },
-    is_admin (state, payload) {
-      state.isAdmin = payload;
+    init_idTokenResult (state, payload) {
+      state.idTokenResult = payload;
     }
-
   },
   actions: {
 

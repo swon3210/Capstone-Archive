@@ -34,9 +34,9 @@ export default {
     login () {
       auth.signInWithEmailAndPassword(this.userEmail, this.userPassword)
       .then(cred => {
+        localStorage.setItem('uid', cred.user.uid);
         this.$store.commit('init_uid', cred.user.uid);
-        console.log('uid', this.$store.state.uid);
-        this.$router.push('/communitypage/dashboard')
+        this.$router.push('/communitypage/project');
       }).catch(err => {
         this.error = err.message;
         console.log(err.message);

@@ -121,7 +121,6 @@ export default {
       right: null,
       left: null,
       links: [
-        { icon: 'dashboard', text: 'Dashboard', route: '/communitypage/dashboard'},
         { icon: 'folder', text: 'Project', route: '/communitypage/project'},
         { icon: 'supervisor_account', text: 'Team', route: '/communitypage/team'},
         { icon: 'person', text: 'Profile', route: '/communitypage/profile'},
