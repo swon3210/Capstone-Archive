@@ -1,5 +1,5 @@
 <template>
-  <v-app class="grey lighten-4">
+  <v-app class="light-green lighten-5">
     <Navbar />
     <v-content>
       <nuxt />
@@ -17,10 +17,12 @@ export default {
     Navbar
   },
   beforeMount () {
+    console.log('hey!')
     auth.onAuthStateChanged(user => {
       if (user) {
         this.$store.commit('display_logout');
         user.getIdTokenResult().then(idTokenResult => {
+          console.log(idTokenResult);
           this.$store.commit('init_idTokenResult', idTokenResult);
           localStorage.setItem('idTokenResult', JSON.stringify(idTokenResult));
 
