@@ -2,8 +2,8 @@
   <div class="projects">
     <v-container>
       <v-layout wrap>
-
-        <v-flex xs12>
+        <Popup />
+        <!-- <v-flex xs12>
           <v-card
             flat
             class="pa-2"
@@ -94,7 +94,7 @@
               </v-flex>
             </v-layout>
           </v-card>
-        </v-flex>
+        </v-flex> -->
 
         <v-flex
           sm4
@@ -178,6 +178,7 @@
 
 <script>
 import { db } from '~/fb'
+import Popup from '~/components/community/Popup'
 
 export default {
   layout: 'community',
@@ -207,6 +208,9 @@ export default {
         } 
       })
     }, err => console.log(err.message));
+  },
+  components: {
+    Popup
   },
   computed: {
     myProjects () {

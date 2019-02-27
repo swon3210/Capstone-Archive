@@ -14,11 +14,11 @@
             </div>
             
             <ForumForm 
-              v-show="computedformMode === 'add'"
+              v-if="computedformMode === 'add'"
               @to_forum_list="$emit('to_forum_list')"
             />
             <ForumComments
-              v-show="computedformMode !== 'add'"
+              v-if="computedformMode !== 'add'"
               :comments = "comments"
               :postId = "postData.id"
             />
@@ -62,11 +62,10 @@ export default {
       return this.formMode;
     }
   },
-  created () {
+  beforeMount () {
     const comments = [];
-    // 메서드로 걸어서 자동으로 동작 안하는 것 같은데;; 에효
-    console.log('created!!!!!')
     db.collection('forums').doc(this.postData.id).collection('comments').onSnapshot(res => {
+      
       const changes = res.docChanges();
       changes.forEach(change => {
         if (change.type === 'added') {

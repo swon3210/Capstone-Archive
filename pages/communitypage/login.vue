@@ -7,6 +7,9 @@
           <form id="login-form" @submit.prevent="login">
             <div class="form-group"><label class="text-secondary">Email</label><input id="login-email" v-model="userEmail" class="form-control" type="text" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$" inputmode="email"></div>
             <div class="form-group"><label class="text-secondary">Password</label><input id="login-password" class="form-control" type="password" v-model="userPassword"  required=""></div><button class="btn btn-info mt-2" type="submit">Log In</button></form>
+
+            <button class="btn btn-info mt-2" @click="google_sign_in">Log in With Google Account</button>
+
           <p class="mt-3 mb-0"><nuxt-link tag="a" to="/communitypage/register" class="text-info small">회원가입</nuxt-link></p>
           <p class="text-danger small">{{error}}</p>
         </div>
@@ -19,7 +22,7 @@
 </template>
 
 <script>
-import { auth } from '~/fb';
+import { auth, firebase } from '~/fb';
 
 export default {
   layout: 'empty',
@@ -41,6 +44,20 @@ export default {
         this.error = err.message;
         console.log(err.message);
       });
+    },
+    google_sign_in () {
+      const provider = new firebase.auth.GoogleAuthProvider();
+
+      auth.signInWithPopup(provider).then(cred => {
+        localStorage.setItem('uid', cred.user.uid);
+        this.$store.commit('init_uid', cred.user.uid);
+        this.$router.push('/communitypage/project');
+        console.log(cred);
+        
+      }).catch(err => {
+        console.log(err.message);
+      })
+
     }
   }
 }

@@ -45,14 +45,14 @@
       </v-flex>
     </v-layout>
     <ForumPost 
-      v-show="participateMode"
+      v-if="participateMode"
       @go_back = "go_back"
       @to_forum_list = "to_forum_list"
       :mode = "mode"
       :postData = "postData"
     />
     <v-expansion-panel
-      v-show="!participateMode"
+      v-if="!participateMode"
       expand
     >
       <v-expansion-panel-content

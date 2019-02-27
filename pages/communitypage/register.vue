@@ -19,14 +19,15 @@
           <div class="col-sm-4 label-column"><label class="col-form-label" for="repeat-pawssword-input-field">Repeat Password </label></div>
           <div class="col-sm-6 input-column"><input id="register-repeat-password" class="form-control" type="password" v-model="userRepeatPassword"></div>
         </div>
-        <div class="form-check"><label class="form-check-label" for="formCheck-1">{{error}}</label></div><button class="btn btn-light submit-button" type="submit">가입하기</button></form>
+        <div class="form-check"><label class="form-check-label" for="formCheck-1">{{error}}</label></div><button class="btn btn-light submit-button" type="submit">가입하기</button>
+        <button class="btn btn-light submit-button" @click.prevent="google_sign_up">구글 아이디로 가입하기</button></form>        
         <p class="danger"></p>
     </div>
   </div>
 </template>
 
 <script>
-import { db, auth } from '~/fb';
+import { db, auth, firebase } from '~/fb';
 
 export default {
   layout: 'empty',
@@ -47,6 +48,30 @@ export default {
           name: this.userName,
           email: this.userEmail
         })
+      }).then(() => {
+        this.userName = '';
+        this.userEmail = '';
+        this.userPassword = '';
+        this.userRepeatPassword = '';
+        this.$router.push('/communitypage/login');
+      }).catch(err => {
+        this.error = err.message;
+        console.log(err.message);
+      });
+    },
+    google_sign_up () {
+      const provider = new firebase.auth.GoogleAuthProvider();
+
+      auth.signInWithPopup(provider).then(cred => {
+
+        this.$store.commit('init_uid', cred.user.uid);
+
+        return db.collection('users').doc(cred.user.uid).set({
+          name: cred.additionalUserInfo.profile.name,
+          email: cred.additionalUserInfo.profile.email,
+          picture: cred.additionalUserInfo.profile.picture
+        })
+        
       }).then(() => {
         this.userName = '';
         this.userEmail = '';
