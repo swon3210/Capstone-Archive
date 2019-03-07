@@ -2,7 +2,7 @@
   <div class="projects">
     <v-container>
       <v-layout wrap>
-        <Popup />
+        
         <!-- <v-flex xs12>
           <v-card
             flat

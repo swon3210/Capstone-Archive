@@ -1,5 +1,5 @@
 <template>
-  <v-app class="light-green lighten-5">
+  <v-app class="white">
     <Navbar />
     <v-content>
       <nuxt />
@@ -41,3 +41,7 @@ export default {
   }
 }
 </script>
+
+<style>
+
+</style>

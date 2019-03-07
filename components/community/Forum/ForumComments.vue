@@ -1,7 +1,44 @@
 <template>
-  <v-card flat>
-    
-    <v-container>
+  <v-timeline dense>
+    <v-timeline-item
+      small
+      color="primary"
+    >
+      <v-card class="elevation-2">
+        <v-card-title class="headline">
+          <v-avatar class="mr-3">
+            <img src="http://i.pravatar.cc/64">
+          </v-avatar>
+          답변
+          <v-spacer></v-spacer>
+          <v-btn depressed>답변하기</v-btn>
+        </v-card-title>
+        <v-textarea
+          class="pt-0 px-3"
+          auto-grow
+          v-model="text"
+        ></v-textarea>
+      </v-card>
+    </v-timeline-item>
+    <v-timeline-item
+      v-for="n in 4"
+      :key="n"
+      small
+      color="primary"
+    >
+      <v-card class="elevation-2">
+        <v-card-title class="headline">
+          <v-avatar class="mr-3">
+            <img src="http://i.pravatar.cc/64">
+          </v-avatar>
+          Lorem ipsum
+        </v-card-title>
+        <v-card-text class="pt-0">Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae.</v-card-text>
+      </v-card>
+    </v-timeline-item>
+  </v-timeline>
+  <!-- <v-container>
+    <v-card flat>
       <v-layout row wrap>
         <v-flex xs12>
           <v-list three-line>
@@ -15,12 +52,21 @@
 
               <v-textarea
                 class="px-2"
-                label="답변"
+                auto-grow
                 v-model="text"
               ></v-textarea>
                 
               <v-icon color="primary" @click="addComment">done</v-icon>
             </v-list-tile>
+          </v-list>
+        </v-flex>
+      </v-layout>
+    </v-card>
+    <v-card flat>
+      <v-layout row wrap>
+        <v-flex xs12>
+          <v-list three-line>
+
             <template v-for="comment in comments">
 
               <v-list-tile
@@ -28,7 +74,7 @@
                 avatar
               >
                 <v-list-tile-avatar>
-                  <img src="https://cdn.vuetifyjs.com/images/lists/2.jpg">
+                  <img :src="comment.userPicture">
                 </v-list-tile-avatar>
 
                 <v-list-tile-content>
@@ -37,7 +83,7 @@
                   
                 </v-list-tile-content>
                 <v-icon class="mx-2" 
-                  v-if="$store.getters.uid === comment.uid"
+                  v-if="userInfo.uid === comment.uid"
                   @click="deleteComment(comment.id)"
                 >
                   delete
@@ -49,13 +95,15 @@
           
         </v-flex>
       </v-layout>
-    </v-container>
-  </v-card>
+    </v-card>
+  </v-container> -->
+  
 </template>
 
 <script>
 import { db } from '~/fb'
 import * as moment from 'moment';
+import { mapGetters } from 'vuex'
 
 export default {
   props: {
@@ -78,24 +126,26 @@ export default {
       text: ''
     }
   },
+  computed: {
+    ...mapGetters(['userInfo'])
+  },
   methods: {
     addComment () {
       db.collection('forums').doc(this.postId).collection('comments').add({
-        uid: this.$store.getters.uid,
+        uid: this.userInfo.uid,
+        // userName: 
+        userPicture: this.userInfo.photoURL,
         commentor: "test user name and I think this should be in localstorage",
         text: this.text,
         date: moment().format('LLLL') 
       }).then(() => {
-        alert('completed!')
       }).catch(err => {
         console.log(err.message);
       })
     },
     deleteComment (deleteId) {
-      alert('work!')
       db.collection('forums').doc(this.postId).collection('comments').doc(deleteId).delete()
       .then(() => {
-        alert('deleted!')
       }).catch(err => {
         console.log(err.message);
       })

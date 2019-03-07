@@ -22,14 +22,14 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['uid'])
+    ...mapGetters(['userInfo'])
   },
   components: {
     ProfileHeader
   },
   beforeMount() {
-    if (this.uid) {
-      db.collection('users').doc(this.uid).get()
+    if (this.userInfo.uid) {
+      db.collection('users').doc(this.userInfo.uid).get()
       .then(doc => {
         this.userName = doc.data().name;
         this.userEmail = doc.data().email;

@@ -1,32 +1,52 @@
 <template>
   <div>
-    <v-card flat>
-      <v-icon @click="$emit('to_forum_list')" class="pt-5 px-5">arrow_back_ios</v-icon>
-      <v-container fill-height>
-        <v-layout align-center>
-          <v-flex xs12>
-            <div v-show="formMode !== 'add'" class="mb-5 mx-5">
+    <v-container fill-height>
+      <v-layout align-center>
+        <v-flex xs10 offset-xs1>
+          <v-card flat class="mb-5" v-if="computedformMode !== 'add'">
+
+            <v-layout row pb-2>
+              <v-flex xs12>
+                <v-card class="card--flex-toolbar">
+                  <v-toolbar card prominent color="white">
+                    <v-toolbar-title class="body-2 grey--text">Title</v-toolbar-title>
+
+                  </v-toolbar>
+
+                  <v-divider></v-divider>
+
+                  <v-card-text style="height: 200px;"></v-card-text>
+                </v-card>
+              </v-flex>
+            </v-layout>
+          </v-card>
+          <!-- <v-card class="mb-5" flat>
+            <v-icon @click="$emit('to_forum_list')" class="pa-5">arrow_back_ios</v-icon>
+            <div v-show="formMode !== 'add'" class="mb-5 pb-5 mx-5">
               <h3 class="display-1 pa-2">
                 {{postData.title}}
               </h3>
               <v-divider class="mb-5"></v-divider>
               <span class="subheading">{{postData.text}}</span>
             </div>
-            
-            <ForumForm 
-              v-if="computedformMode === 'add'"
-              @to_forum_list="$emit('to_forum_list')"
-            />
-            <ForumComments
-              v-if="computedformMode !== 'add'"
-              :comments = "comments"
-              :postId = "postData.id"
-            />
+          </v-card> -->
+          
+          <v-card flat>
+          <ForumForm 
+            v-if="computedformMode === 'add'"
+            @to_forum_list="$emit('to_forum_list')"
+          />
+          <ForumComments
+            v-if="computedformMode !== 'add'"
+            :comments = "comments"
+            :postId = "postData.id"
+            class="pr-5 mt-5"
+          />
+          </v-card>
 
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-card>
+        </v-flex>
+      </v-layout>
+    </v-container>
   </div>
 </template>
 

@@ -30,13 +30,13 @@
         </v-layout>
       </v-container>
       <v-card-actions>
-        <v-btn flat @click="$emit('go_back')">Cancel</v-btn>
+        <v-btn flat @click="$emit('go_back')">취소</v-btn>
         <v-spacer></v-spacer>
         <v-btn
           flat
           :loading="loading"
           @click="submit"
-        >Submit</v-btn>
+        >등록</v-btn>
       </v-card-actions>
     </v-form>
   </div>
@@ -45,6 +45,7 @@
 <script>
 import { db } from '~/fb'
 import * as moment from 'moment';
+import { mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -55,11 +56,14 @@ export default {
       loading: false
     }
   },
+  computed: {
+    ...mapGetters(['userInfo'])
+  },
   methods: {
     submit () {
       const now = moment().format('LLLL');
       const forumPost = {
-        uid: this.$store.getters.uid,
+        uid: this.userInfo.uid,
         authorName: '',
         authorTeam: '',
         authorRole: '',
@@ -71,6 +75,7 @@ export default {
 
       db.collection('forums').add(forumPost).then(() => {
         this.loading = false;
+        this.$router.push('/communitypage/forum')
       }).catch(err => console.log(err.message))
     }
   }

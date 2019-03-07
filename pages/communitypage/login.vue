@@ -37,8 +37,7 @@ export default {
     login () {
       auth.signInWithEmailAndPassword(this.userEmail, this.userPassword)
       .then(cred => {
-        localStorage.setItem('uid', cred.user.uid);
-        this.$store.commit('init_uid', cred.user.uid);
+        this.$store.commit('init_user_info', cred.user);
         this.$router.push('/communitypage/project');
       }).catch(err => {
         this.error = err.message;
@@ -49,10 +48,10 @@ export default {
       const provider = new firebase.auth.GoogleAuthProvider();
 
       auth.signInWithPopup(provider).then(cred => {
-        localStorage.setItem('uid', cred.user.uid);
-        this.$store.commit('init_uid', cred.user.uid);
-        this.$router.push('/communitypage/project');
         console.log(cred);
+        this.$store.commit('init_user_info', cred.user);
+        this.$router.push('/communitypage/project');
+        
         
       }).catch(err => {
         console.log(err.message);
