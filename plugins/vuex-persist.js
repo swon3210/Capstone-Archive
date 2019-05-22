@@ -5,7 +5,7 @@ export default ({ store }) => {
   window.onNuxtReady(() => {
     new VuexPersistence({
       key: 'vuex',
-      storage: window.sessionStorage
+      storage: window.localStorage
     }).plugin(store);
   });
 }

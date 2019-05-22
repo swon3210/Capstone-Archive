@@ -13,7 +13,8 @@ const mutations = {
 }
 
 const actions = {
-  
+  create_team () {
+  }
 }
 
 export default { state, getters, mutations, actions }

@@ -9,9 +9,14 @@
         <v-icon>mdi-face</v-icon>
         프로젝트 소개
       </v-tab>
-      <v-tab>
+      <v-tab @click="switch_team_page('teamList')">
         <v-icon>mdi-face</v-icon>
-        팀원 소개
+        팀 소개
+      </v-tab>
+
+      <v-tab @click="switch_team_page('teamView')">
+        <v-icon>mdi-face</v-icon>
+        마이 팀
       </v-tab>
       
     </v-tabs>
@@ -24,65 +29,24 @@
       <v-layout
         justify-center
         wrap
-        v-show="true"
+        
       >
         <!-- <TeamIntro
           :members = "members"
         /> -->
-        <TeamList />
+        <TeamList 
+          v-if="view.teamList"
+          @switch_team_page = "switch_team_page"
+        />
+        <TeamProject 
+          v-if="view.teamProject"
+        />
+        <TeamView 
+          v-if="view.teamView"
+        />
       </v-layout>
       
-      <v-layout wrap v-if="switch_team_page()">
-        <v-flex xs12>
-          <v-card class="pa-5">
-            <h3 class="display-3 text-xs-center">Welcome to the site</h3>
-
-            <p class="subheading text-xs-center">Lorem ipsum dolor sit amet, pri veniam forensibus id. Vis maluisset molestiae id, ad semper lobortis cum. At impetus detraxit incorrupte usu, repudiare assueverit ex eum, ne nam essent vocent admodum.</p>
-
-            <v-divider class="my-3 text-xs-center"></v-divider>
-
-            <div class="title mb-3 text-xs-center">Check out our newest features!</div>
-            
-          </v-card>
-        </v-flex>
-        <v-flex xs12>
-          <v-stepper v-model="e6" vertical>
-            <v-stepper-step :complete="e6 > 1" step="1">
-              Select an app
-              <small>Summarize if needed</small>
-            </v-stepper-step>
-
-            <v-stepper-content step="1">
-              <v-card color="grey lighten-1" class="mb-5" height="200px"></v-card>
-              <v-btn color="primary" @click="e6 = 2">Continue</v-btn>
-              <v-btn flat>Cancel</v-btn>
-            </v-stepper-content>
-
-            <v-stepper-step :complete="e6 > 2" step="2">Configure analytics for this app</v-stepper-step>
-
-            <v-stepper-content step="2">
-              <v-card color="grey lighten-1" class="mb-5" height="200px"></v-card>
-              <v-btn color="primary" @click="e6 = 3">Continue</v-btn>
-              <v-btn flat>Cancel</v-btn>
-            </v-stepper-content>
-
-            <v-stepper-step :complete="e6 > 3" step="3">Select an ad format and name ad unit</v-stepper-step>
-
-            <v-stepper-content step="3">
-              <v-card color="grey lighten-1" class="mb-5" height="200px"></v-card>
-              <v-btn color="primary" @click="e6 = 4">Continue</v-btn>
-              <v-btn flat>Cancel</v-btn>
-            </v-stepper-content>
-
-            <v-stepper-step step="4">View setup instructions</v-stepper-step>
-            <v-stepper-content step="4">
-              <v-card color="grey lighten-1" class="mb-5" height="200px"></v-card>
-              <v-btn color="primary" @click="e6 = 1">Continue</v-btn>
-              <v-btn flat>Cancel</v-btn>
-            </v-stepper-content>
-          </v-stepper>
-        </v-flex>
-      </v-layout>
+      
     </v-container>
     <!-- <v-container>
 
@@ -114,13 +78,18 @@
 
 <script>
 import TeamIntro from '~/components/community/Team/TeamIntro'
+import TeamProject from '~/components/community/Team/TeamProject'
 import TeamList from '~/components/community/Team/TeamList'
+import TeamView from '~/components/community/Team/TeamView'
+
 
 export default {
   layout: 'community',
   components: {
     TeamIntro,
-    TeamList
+    TeamList,
+    TeamProject,
+    TeamView
   },
   data() {
     return {
@@ -132,17 +101,26 @@ export default {
         { name: 'Yoshi', role: 'Sales guru', avatar: '/avatar.jpg' }
       ],
       view: {
-        teamIntro: true,
+        teamIntro: false,
         teamProject: false,
-        teamList: false
+        teamList: true,
+        teamView: false
       },
       // dummy data
-      e6: 1
+      
     }
   },
   methods: {
     switch_team_page (pageView) {
-      this.view[pageView] = true;
+      console.log('pageView', pageView)
+      console.log('view', this.view)
+      for (let i in this.view) {
+        if (i === pageView) {
+          this.view[i] = true
+        } else {
+          this.view[i] = false
+        }
+      }
 
 
     }

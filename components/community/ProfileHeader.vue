@@ -1,17 +1,15 @@
 <template>
-  <v-jumbotron
-    :gradient="gradient"
-    dark
-    src="https://cdn.vuetifyjs.com/images/parallax/material2.jpg"
+  <v-img
+    :src="photoURL"
   >
     <v-container fill-height>
       <v-layout align-center>
         <v-flex text-xs-center>
-          <h3 class="display-3">{{name}}</h3>
+          <h3 class="display-3 white--text">{{name}}</h3>
         </v-flex>
       </v-layout>
     </v-container>
-  </v-jumbotron>
+  </v-img>
 </template>
 
 <script>
@@ -25,10 +23,18 @@ export default {
     name: {
       type: String,
       default: 'name'
+    },
+    email: {
+      type: String,
+      default: ''
+    },
+    photoURL: {
+      type: String,
+      default: ''
     }
   },
   mounted () {
-    
+    console.log('photo')
   }
 }
 </script>

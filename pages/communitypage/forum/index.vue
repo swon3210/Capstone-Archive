@@ -53,8 +53,9 @@
     />
     <v-expansion-panel
       v-if="!participateMode"
-      expand
+      popout
     >
+      
       <v-expansion-panel-content
         expand-icon=""
         v-for="post in forumPosts"
@@ -82,11 +83,12 @@
             </v-flex>
           </v-layout>
         </div>
-        <v-card flat class="pa-4">
+        <v-card class="pa-4">
           <p class="mb-4">{{post.text}}</p>          
           <v-btn depressed color="primary" class="right" @click="participate(post)">참여하기</v-btn>
         </v-card>
       </v-expansion-panel-content>
+      
     </v-expansion-panel>
   </v-container>
 </template>

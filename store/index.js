@@ -2,6 +2,8 @@ import Vuex from 'vuex';
 
 // import modules 
 import forum from './modules/forum';
+import profile from './modules/profile';
+import team from './modules/team';
 
 // Only for layout-level communication
 import state from './states.js';
@@ -18,6 +20,12 @@ const store = () => new Vuex.Store({
   actions,
   modules: {
     forum: {
+      namespaced: true
+    },
+    team: {
+      namespaced: true
+    },
+    profile: {
       namespaced: true
     }
   }

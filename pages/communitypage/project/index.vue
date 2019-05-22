@@ -1,162 +1,88 @@
 <template>
   <div class="projects">
     <v-container>
-      <v-layout wrap>
-        
-        <!-- <v-flex xs12>
-          <v-card
-            flat
-            class="pa-2"
-          >
-            <v-layout column wrap class="mt-5">
-              <v-flex>
-                <h3 class="display-1"></h3>
-                <v-text-field
-                  class="mx-5"
-                  label="제목"
-                  single-line
-                  prepend-icon="title"
-                ></v-text-field>
-                <v-select
-                  v-model="value"
-                  class="mx-5"
-                  :items="items"
-                  prepend-icon="category"
-                  attach
-                  chips
-                  label="카테고리"
-                  multiple
-                ></v-select>
-                <v-select
-                  v-model="e6"
-                  :items="states"
-                  class="mx-5"
-                  prepend-icon="work"
-                  :menu-props="{ maxHeight: '400' }"
-                  label="업무 할당"
-                  multiple
-                  hint="업무를 맡을 사람을 지정해주십시오"
-                  persistent-hint
-                ></v-select>
-                <v-textarea
-                  name="input-7-1"
-                  prepend-icon="text_fields"
-                  class="mx-5"
-                  auto-grow
-                  value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
-                ></v-textarea>
-                <div class="pa-4">
-                  <v-checkbox v-model="checkbox1" class="mx-5" label="할일 1"></v-checkbox>
-                  <v-checkbox v-model="checkbox1" class="mx-5" label="할일 2"></v-checkbox>
-                  <v-btn depressed flat class="ml-5" color="primary">업무 추가</v-btn>
-                </div>
-                <v-layout row wrap class="mx-5 pa-4">
-                  <v-flex xs4>
-                    <v-menu>
-                      <v-text-field 
-                        :value="formattedDate" 
-                        slot="activator" 
-                        label="시작일" 
-                        prepend-icon="date_range"
+      <v-layout wrap column>
+        <v-flex xs10>
+          <v-card flat>
+            <v-toolbar
+              color="primary"
+              dark
+              extended
+              flat
+            >
+              <v-layout wrap>
+                
+                <v-flex
+                  sm4
+                  xs12
+                  class="text-xs-center"
+                >
+                  <v-select
+                    v-model="type"
+                    :items="typeOptions"
+                    label="Type"
+                  ></v-select>
+                </v-flex>
+                
+                
+
+                
+              </v-layout>
+            </v-toolbar>
+
+            <v-layout row pb-2>
+              <v-flex xs10 offset-xs1>
+                <v-card class="card--flex-toolbar">
+                  <v-toolbar card prominent>
+                    <v-btn @click="$refs.calendar.prev()">
+                      <v-icon
+                        dark
+                        left
                       >
-                      </v-text-field>
-                      <v-date-picker v-model="due"></v-date-picker>
-                    </v-menu>
-                  </v-flex>
-                  <v-flex xs4>
-                    <v-menu>
-                      <v-text-field 
-                        :value="formattedDate" 
-                        slot="activator" 
-                        label="완료일" 
-                        prepend-icon="date_range"
+                        keyboard_arrow_left
+                      </v-icon>
+                      Prev
+                    </v-btn>
+                    <v-toolbar-title class="body-2 grey--text">Title</v-toolbar-title>
+
+                    <v-spacer></v-spacer>
+
+                    <v-btn icon>
+                      <v-icon>search</v-icon>
+                    </v-btn>
+
+                    <v-btn @click="$refs.calendar.next()">
+                      Next
+                      <v-icon
+                        right
+                        dark
                       >
-                      </v-text-field>
-                      <v-date-picker v-model="due"></v-date-picker>
-                    </v-menu>
-                  </v-flex>
-                  <v-flex xs4>
-                    <v-menu>
-                      <v-text-field 
-                        :value="formattedDate" 
-                        slot="activator" 
-                        label="(선택)중간점검" 
-                        prepend-icon="date_range"
-                      >
-                      </v-text-field>
-                      <v-date-picker v-model="due"></v-date-picker>
-                    </v-menu>
-                  </v-flex>
-                  
-                  
-                </v-layout>
-                <v-btn depressed block color="primary">계획완료</v-btn>
+                        keyboard_arrow_right
+                      </v-icon>
+                    </v-btn>
+                  </v-toolbar>
+
+                  <v-divider></v-divider>
+
+                  <v-card flat height="500">
+                    <v-calendar
+                      ref="calendar"
+                      v-model="start"
+                      :type="type"
+                      :end="end"
+                      color="primary"
+                    ></v-calendar>
+                  </v-card>
+                </v-card>
               </v-flex>
             </v-layout>
           </v-card>
-        </v-flex> -->
-
-        <v-flex
-          sm4
-          xs12
-          class="text-sm-left text-xs-center"
-        >
-          <v-btn @click="$refs.calendar.prev()">
-            <v-icon
-              dark
-              left
-            >
-              keyboard_arrow_left
-            </v-icon>
-            Prev
-          </v-btn>
         </v-flex>
-        <v-flex
-          sm4
-          xs12
-          class="text-xs-center"
-        >
-          <v-select
-            v-model="type"
-            :items="typeOptions"
-            label="Type"
-          ></v-select>
-        </v-flex>
-        <v-flex
-          sm4
-          xs12
-          class="text-sm-right text-xs-center"
-        >
-          <v-btn @click="$refs.calendar.next()">
-            Next
-            <v-icon
-              right
-              dark
-            >
-              keyboard_arrow_right
-            </v-icon>
-          </v-btn>
-        </v-flex>
-
-        <v-flex
-          xs12
-          class="mb-3"
-        >
-          <v-sheet height="500">
-            <v-calendar
-              ref="calendar"
-              v-model="start"
-              :type="type"
-              :end="end"
-              color="primary"
-            ></v-calendar>
-          </v-sheet>
-        </v-flex>
-
-        
-
-        
       </v-layout>
+    </v-container>
+    
+    <v-container>
+      
       <!-- <v-expansion-panel>
         <v-expansion-panel-content v-for="project in myProjects" :key="project.id">
           <div slot="header">{{project.title}}</div>
@@ -221,6 +147,8 @@ export default {
 </script>
 
 <style scoped>
-
+.card--flex-toolbar {
+  margin-top: -64px;
+}
 </style>
 
